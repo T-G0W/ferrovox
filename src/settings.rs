@@ -487,7 +487,7 @@ impl Settings {
         let path = crate::paths::settings_file();
         let mut s: Settings = std::fs::read_to_string(&path)
             .ok()
-            .and_then(|txt| serde_json::from_str(&txt).ok())
+            .and_then(|txt| serde_json::from_str(txt.trim_start_matches('\u{feff}')).ok())
             .unwrap_or_default();
         for def in SPECIAL_DEFS {
             s.special.entry(def.action).or_insert(SpecialBinding {
