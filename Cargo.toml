@@ -3,8 +3,8 @@ name = "ferrovox"
 version = "1.0.0"
 edition = "2021"
 authors = ["T-GOW"]
-description = "Ferrovox – Soundboard mit Mikrofon-Einspeisung, von T-GOW"
-license = "Proprietary"
+description = "Ferrovox – a soundboard that plays into your microphone, by T-GOW"
+license = "MIT OR Apache-2.0"
 publish = false
 build = "build.rs"
 
