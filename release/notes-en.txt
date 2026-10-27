@@ -1,1 +1,1 @@
-- Fixed: sound lists and settings saved as "UTF-8 with BOM" load again
+- New: "About Ferrovox" links to T-G0W's GitHub profile
