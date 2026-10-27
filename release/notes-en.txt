@@ -1,3 +1,1 @@
-- First public release of Ferrovox
-- Setup for 32-bit and 64-bit Windows, automatic updates
-- Interface in German or English (follows your Windows language)
+- Fixed: sound lists and settings saved as "UTF-8 with BOM" load again

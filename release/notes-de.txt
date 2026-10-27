@@ -1,3 +1,1 @@
-- Erste öffentliche Version von Ferrovox
-- Setup für 32- und 64-Bit-Windows, automatische Updates
-- Oberfläche auf Deutsch oder Englisch (folgt der Windows-Sprache)
+- Behoben: Soundliste und Einstellungen, die als „UTF-8 mit BOM“ gespeichert wurden, werden wieder geladen
