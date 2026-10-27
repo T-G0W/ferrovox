@@ -1,116 +1,219 @@
-<p align="center"><img src="assets/wordmark.png" alt="Ferrovox – Soundboard by T-GOW" width="600"></p>
+<p align="center">
+  <img src="assets/logo-512.png" width="128" height="128" alt="Ferrovox icon: an orange hex nut with a V made of equalizer bars">
+</p>
 
-# Ferrovox – Soundboard by T-GOW
+<h1 align="center">Ferrovox</h1>
 
-**Ferrovox** = *ferrum* (Eisen → Rust) + *vox* (Stimme). Ein Soundboard für Windows, geschrieben in Rust,
-das Sounds gleichzeitig auf deinen Lautsprechern und in deinem Mikrofon abspielt – mit globalen Hotkeys,
-die auch in Spielen funktionieren.
+<p align="center">
+  <b>The soundboard that plays straight into your microphone; a free, open-source alternative to Soundpad, built in pure Rust.</b><br>
+  Global hotkeys that work in games, a hotbar, a sound editor, a recorder, text-to-speech and a one-click virtual microphone,<br>
+  in one small native app for Windows. Free, offline, and yours.
+</p>
 
-*English: Ferrovox is a Windows soundboard written in Rust. It plays sounds on your speakers and into your
-microphone at the same time, with global hotkeys that work in games. The interface follows your Windows
-language (German → German, everything else → English).*
+<p align="center">
+  <img alt="100% Rust" src="https://img.shields.io/badge/100%25-Rust-b7410e?style=flat-square&logo=rust">
+  <img alt="Windows 10 and 11, x64 and x86" src="https://img.shields.io/badge/Windows%2010%20%C2%B7%2011-x64%20%C2%B7%20x86-3b82f6?style=flat-square&logo=windows&logoColor=white">
+  <img alt="License: MIT OR Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-3a3a3a?style=flat-square">
+  <a href="https://github.com/T-G0W/ferrovox/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/T-G0W/ferrovox?style=flat-square&color=e8742a"></a>
+  <a href="https://github.com/T-G0W/ferrovox/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/T-G0W/ferrovox/total?style=flat-square&color=4cc36b"></a>
+</p>
 
-Ferrovox ist eine **eigenständige Neuentwicklung**. Es enthält keinen Code, keine Grafiken und keine Sounds
-von Soundpad oder anderen Programmen. Übernommen sind nur offene Schnittstellen: Soundpad-Listen (`.spl`)
-lassen sich importieren, und die Fernsteuerungsbefehle sind kompatibel, damit vorhandene Stream-Deck-Plugins
-weiterlaufen. *Soundpad ist eine Marke ihres Inhabers; Ferrovox steht in keiner Verbindung dazu.*
+<p align="center">
+  <a href="https://github.com/T-G0W/ferrovox/releases/latest"><img alt="Download Ferrovox for Windows" src="https://img.shields.io/badge/Download%20for%20Windows-3B82F6?style=for-the-badge&logo=windows&logoColor=white" height="40"></a>
+</p>
 
-## Installation
+<br>
 
-1. **`Ferrovox-Setup-<version>.exe`** von der [Release-Seite](https://github.com/T-G0W/ferrovox/releases/latest) laden und starten – ein Setup für 32- und
-   64-Bit-Windows (Windows 10/11), ohne Administratorrechte.
-2. Sounds oder **Videos** per Drag & Drop ins Fenster ziehen (MP3, WAV, FLAC, OGG, M4A/AAC, ALAC, AIFF, MP4, MOV, MKV …).
-3. Damit andere dich hören: oben rechts auf **„Mikrofon einrichten“ → „Jetzt einrichten – 1 Klick“**.
-   Ferrovox lädt das offizielle VB-CABLE direkt von vb-audio.com, prüft die digitale Signatur und installiert es
-   still – Windows fragt nur einmal nach Administratorrechten. Danach optional
-   **„Als Windows-Standardmikrofon setzen“**: Discord, Spiele & Co. (Mikrofon „Standard“) hören dich und deine
-   Sounds ohne weitere Einstellungen. Dein echtes Mikrofon wird automatisch mit durchgeleitet.
-4. Hotkey: in der Soundliste auf das Feld in der Spalte **Hotkey** klicken und die Taste drücken – fertig.
+<p align="center">
+  <img src="docs/images/ferrovox-main.png" alt="Ferrovox main window: categories on the left, a sound list with durations, hotkeys such as F1, Ctrl+2, Num 1 and Mouse 4, play counts, and a colored hotbar with Airhorn, Bruh, Wow, Applause, Fail Trombone and Victory Fanfare" width="100%">
+  <br>
+  <sub>Categories, a sound list with per-sound hotkeys (keyboard, numpad and mouse buttons) and a colored hotbar for one-click playback.</sub>
+</p>
 
-Bestehende Soundpad-Liste? Beim ersten Start (leere Liste) gibt es den Button **„Vorhandene Soundpad-Liste übernehmen“**,
-oder **Datei → Soundpad-Liste importieren** (inkl. Abspielzähler aus `stats.spl` und Hotkeys).
+> [!NOTE]
+> **Ferrovox is an independent project by T-GOW.** It contains no code, artwork or sounds from Soundpad.
+> It can import Soundpad sound lists and speaks the same remote-control commands, so switching is painless.
+> Soundpad is a trademark of its respective owner; Ferrovox is not affiliated with or endorsed by it.
 
-Windows SmartScreen zeigt beim ersten Start des Setups eventuell „Unbekannter Herausgeber“, weil das Setup
-nicht mit einem (kostenpflichtigen) Code-Signing-Zertifikat signiert ist: **Weitere Informationen → Trotzdem ausführen**.
+<p align="center">
+  <a href="#features">Features</a> ·
+  <a href="#feature-tour">Feature tour</a> ·
+  <a href="#coming-from-soundpad">Coming from Soundpad</a> ·
+  <a href="#get-started">Get started</a> ·
+  <a href="#remote-control">Remote control</a> ·
+  <a href="#under-the-hood">Under the hood</a> ·
+  <a href="#build-from-source">Build</a> ·
+  <a href="#license-and-credits">License</a>
+</p>
 
-## Automatische Updates
+<br>
 
-Ferrovox sucht kurz nach dem Start und danach alle 6 Stunden nach einer neuen Version, lädt sie im Hintergrund
-und installiert sie still beim Beenden (oder sofort per **„Jetzt neu starten und aktualisieren“**).
-Einstellbar unter **Einstellungen → System → Updates**, manuell über **Hilfe → Nach Updates suchen**.
+<table>
+  <tr>
+    <td width="25%" valign="top">
+      <h3>🎙️ Into your mic, in one click</h3>
+      Ferrovox installs the official VB-CABLE driver for you, checks its signature and wires everything up. Your real voice is mixed in automatically, so Discord and games just hear you plus your sounds.
+    </td>
+    <td width="25%" valign="top">
+      <h3>⌨️ Hotkeys that work in games</h3>
+      A low-level hook catches keys even in fullscreen games, including mouse buttons 4, 5 and middle. Push-to-talk can be pressed for you while a sound plays.
+    </td>
+    <td width="25%" valign="top">
+      <h3>⚡ Native and tiny</h3>
+      One 7&nbsp;MB executable, no Electron, no runtime. A real-time mixer with resampling, fades and clipping protection keeps latency low.
+    </td>
+    <td width="25%" valign="top">
+      <h3>🔄 Updates itself</h3>
+      New versions download in the background and install when you quit. Every update is Ed25519-signed and verified before anything runs.
+    </td>
+  </tr>
+</table>
 
-Jedes Update ist mit einem Ed25519-Schlüssel signiert; Ferrovox prüft Signatur, Größe und SHA-256, bevor es
-etwas ausführt. Manipulierte Dateien werden verworfen.
+<br>
 
-## Funktionen
+## Features
 
-| Bereich | Ferrovox |
-|---|---|
-| Wiedergabe Lautsprecher / Mikrofon / beides | ✔ + Modus pro Sound |
-| Mehrere Sounds gleichzeitig | ✔ „Sounds überlagern“ |
-| Mikrofon-Einspeisung | virtuelles Mikrofon per **Ein-Klick-Installation aus der App**, ohne Abschalten von Windows-Schutzfunktionen |
-| Für Discord automatisch | ✔ optional als Windows-Standardmikrofon, mit Rückkopplungsschutz |
-| Hotkeys pro Sound, ~45 Spezial-Hotkeys | ✔ inkl. **Maustasten 4/5/Mitte** |
-| Modifier+Index, Modifier+Numcode, Kategorie-Index, L/R-Modifier, Hotkeys durchreichen | ✔ |
-| Auto-Keys (Push-to-Talk automatisch) mit Bedingungen | ✔ Scancode-basiert (spieltauglich) |
-| Hotbar mit Seiten, Farben, Drag & Drop | ✔ Rasterlayout frei wählbar |
-| Kategorien, Index, Zufalls-Hotkey, verstecken | ✔ |
-| Lautstärke-Normalisierung + Sprachmessung | ✔ (gegated RMS, Clipping-Schutz) |
-| Eigene Lautstärke pro Sound, nicht-destruktives Zuschneiden | ✔ |
-| Soundeditor (Schneiden, Fades, Rückwärts, Boost …) | ✔ |
-| Recorder (Lautsprecher-Loopback / Mikrofon) | ✔ (WAV) |
-| Text-to-Speech (Windows-Stimmen) | ✔ + als Sound speichern |
-| Andere Apps leiser (Ducking) | ✔ direkt pro Sitzung, Stärke einstellbar |
-| Sprachaktivierung auslösen, PTT-/Mikro-Verzögerung | ✔ |
-| Benachrichtigungstöne | ✔ erzeugte Töne (keine Fremd-Assets) |
-| Fernsteuerung | ✔ eigene Pipe + Soundpad-kompatible Pipe + `-rc` |
-| Vorladen von Hotkey-Sounds (null Verzögerung) | ✔ LRU-Cache |
-| Undo/Redo, tote Einträge, Mischen, Export, Statistik | ✔ |
-| Sprachen | Deutsch + Englisch, automatisch nach Windows-Sprache |
-| Setup + automatische Updates | ✔ 32 + 64 Bit, signiert |
+Every screenshot is the real app, captured from a release build.
 
-## Oberfläche
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/images/ferrovox-setup.png" alt="The Set up microphone wizard: step 1 shows VB-CABLE installed and connected, step 2 offers Set as Windows default microphone, step 3 has speaker and microphone test tones" width="100%">
+      <br>
+      <sub>The microphone wizard: install, use automatically, test.</sub>
+      <h3>Your sounds, in every voice chat</h3>
+      Windows only lets programs into a microphone through a driver. Ferrovox downloads the official VB-CABLE package straight from vb-audio.com, verifies the digital signature and installs it silently with a single administrator prompt.
+      <br><br>
+      One more click makes it the Windows default microphone, so Discord, TeamSpeak and games pick it up without touching their settings. Your real microphone is passed through, with feedback protection built in.
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/images/ferrovox-hotkeys.png" alt="Preferences, Hotkeys tab: hotkeys enabled, pass hotkeys to other applications, index and numcode hotkeys with modifier choices, and a list of special hotkeys such as Play selected file and Stop playback" width="100%">
+      <br>
+      <sub>Hotkey preferences with index hotkeys, numcodes and around 45 special actions.</sub>
+      <h3>Hotkeys for everything</h3>
+      Give every sound its own key, or type its list position or number with a modifier held down. Around 45 special hotkeys cover play, stop, pause, next, random, volume, play mode, recording, text-to-speech and more.
+      <br><br>
+      Distinguish left and right modifiers, pass keys through to other apps, and see every assignment at a glance in the hotkey overview.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/images/ferrovox-editor.png" alt="The sound editor showing the waveform of Drumroll with Crop, Cut, Fade-in, Fade-out, Reverse, Silence, Boost and Normalize tools" width="100%">
+      <br>
+      <sub>The built-in sound editor with waveform, zoom and non-destructive trimming.</sub>
+      <h3>Edit without leaving the app</h3>
+      Crop, cut, fade in and out, reverse, insert silence, boost and normalize, with undo and zoom. Or trim a sound non-destructively: Ferrovox remembers the start and end and leaves your file untouched.
+      <br><br>
+      Each sound can also have its own volume and play mode, and loudness normalization keeps quiet and loud files at the same level.
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/images/ferrovox-autokeys.png" alt="Preferences, Auto-Keys tab: keys pressed automatically during playback, hold or tap modes, and conditions such as only when an app is in the foreground" width="100%">
+      <br>
+      <sub>Auto-Keys press your push-to-talk key while a sound plays.</sub>
+      <h3>Push-to-talk, handled</h3>
+      Auto-Keys press and hold your push-to-talk key for exactly as long as a sound plays, or tap it before and after. Conditions limit it to a specific game, a running app or fullscreen windows.
+      <br><br>
+      Keys are sent as hardware scancodes, which games accept, and a guard stops risky modifiers from triggering Alt+Tab or Win+L by accident.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/images/ferrovox-tts.png" alt="The Text-to-Speech window with a text field, Play, speaker and microphone buttons, Save as sound, a voice picker and speed and pitch sliders" width="100%">
+      <br>
+      <sub>Text-to-speech with the voices built into Windows.</sub>
+      <h3>Say it, or record it</h3>
+      Type a sentence and Ferrovox speaks it into your microphone with any installed Windows voice, at the speed and pitch you choose, or saves it as a new sound.
+      <br><br>
+      The recorder captures what your speakers play or what your microphone hears, trims silence, normalizes and drops the result straight into your list.
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/images/ferrovox-light.png" alt="Ferrovox in the light theme with the same sound list and hotbar" width="100%">
+      <br>
+      <sub>The light theme. Studio blue and copper are the dark themes.</sub>
+      <h3>Looks the way you like</h3>
+      A clean studio look with Segoe Fluent icons and a dark title bar, in three themes, with adjustable scaling, compact rows and selectable columns.
+      <br><br>
+      The interface follows your Windows language: German on German systems, English everywhere else, switchable at any time.
+    </td>
+  </tr>
+</table>
 
-Schlichtes Soundboard-Layout im dunklen Studio-Look: flache Panels mit Kopfzeile, blaue Akzente und Werte,
-Linien-Icons (Segoe Fluent Icons), dunkle Titelleiste.
+### Feature tour
 
-- **Oben:** Menü, Werkzeugleiste (Wiedergabe, Modus, Lautstärke, Hotkeys/Auto-Keys, Sprache) und „Jetzt läuft“ mit Fortschritt und Pegeln
-- **Links:** Kategorien · **Mitte:** Soundliste (Spalten über *Ansicht → Spalten*) · **Unten:** Hotbar
-- Themes: Studio (Blau), Studio (Kupfer), Hell
+- **Playback:** speakers, microphone or both, per app or per sound; overlap several sounds; pause, seek, jump, repeat a file or the whole list, continue to the next file, random from a category or everything.
+- **Library:** drag and drop audio and video files (MP3, WAV, FLAC, OGG, M4A/AAC, ALAC, AIFF, MP4, MOV, MKV and more), categories with icons and colors, search, sorting, play counts, dead-entry finder, undo and redo, daily backups.
+- **Hotbar:** pages with titles and colors, a freely chosen grid, drag and drop, lockable, page switching by hotkey with audible cues.
+- **Hotkeys:** per sound, per category (random), index and numcode hotkeys, around 45 special actions, mouse buttons 4, 5 and middle, conflict detection and an overview window.
+- **Microphone:** one-click virtual microphone, real-microphone passthrough, voice blocking while a sound plays, push-to-talk and microphone delays, a voice-activation burst for apps that need sound to open the gate.
+- **Audio:** loudness normalization with voice measurement, per-sound gain, ducking of other apps while a sound plays, live level meters, preloading of hotkey sounds for zero delay.
+- **Tools:** sound editor, recorder (loopback or microphone), text-to-speech, color tool, statistics and a hotkey overview.
+- **Everyday comfort:** system tray, start with Windows, start minimized, always on top, follows your Windows default output device live.
+- **Updates and install:** one setup for 32- and 64-bit Windows without administrator rights, signed automatic updates, clean uninstall.
 
-## Fernsteuerung
+<br>
 
-Ferrovox lauscht auf `\\.\pipe\ferrovox` und – solange Soundpad nicht läuft – auch auf
-`\\.\pipe\sp_remote_control`, damit vorhandene Stream-Deck-Plugins und Skripte weiterlaufen.
+## Coming from Soundpad?
+
+Ferrovox reads your existing Soundpad sound list, including categories, hotkeys and play counts from `stats.spl`. On first start with an empty list you get an **Import existing Soundpad list** button, or use **File › Import Soundpad list**.
+
+Stream Deck plugins, bots and scripts keep working: Ferrovox answers on the same named pipe, `sp_remote_control`, with the same command names and response codes, as long as Soundpad itself is not running.
+
+For the microphone, Ferrovox uses a signed virtual audio cable and does all the mixing itself. Nothing in your system security has to be changed or switched off, and it is undone with one click.
+
+<br>
+
+## Get started
+
+1. Download **`Ferrovox-Setup-<version>.exe`** from the [releases page](https://github.com/T-G0W/ferrovox/releases/latest) and run it. One installer covers 32- and 64-bit Windows 10 and 11, no administrator rights needed.
+2. Drag sounds or videos into the window.
+3. To let others hear your sounds, click **Set up microphone › Set up now, one click** in the top right. Windows asks once for administrator rights to install the driver.
+4. Optional: **Set as Windows default microphone**, so voice chats use it without any changes.
+5. Click the **Hotkey** cell of a sound and press a key. Done.
+
+> [!TIP]
+> Windows SmartScreen may show "Unknown publisher" the first time, because the setup is not signed with a paid code-signing certificate. Choose **More info › Run anyway**.
+
+Your sound list, settings and log live in `%APPDATA%\T-GOW\Ferrovox`. Set the environment variable `FERROVOX_DATA_DIR` for a portable setup.
+
+<br>
+
+## Remote control
+
+Ferrovox listens on `\\.\pipe\ferrovox` and, for compatibility, on `\\.\pipe\sp_remote_control`.
 
 ```bash
 ferrovox.exe -rc "DoPlaySound(3)"
 ```
 
-Wichtige Befehle: `DoPlaySound(i[, lautsprecher, mikro])`, `DoPlaySoundFromCategory(k, i)`,
-`DoPlayRandomSound()`, `DoPlayRandomSoundFromCategory(k)`, `DoStopSound()`, `DoTogglePause()`,
-`DoJumpMs(ms)`, `DoSeekMs(ms)`, `SetVolume(0-100)`, `DoToggleMute()`, `DoAddSound(pfad)`,
-`DoStartRecordingSpeakers()`, `DoStartRecordingMicrophone()`, `DoStopRecording()`, `DoSearch(text)`,
-`DoSelectIndex(i)`, `DoUndo()`, `DoRedo()`, `GetSoundlist()`, `GetCategories()`, `GetPlayStatus()`,
-`GetPlaybackPositionInMs()`, `GetVolume()`, `IsAlive()`. Ferrovox-Extras: `DoPlaySoundByName(text)`,
-`DoTts(text)`, `DoSetPlayMode(speakers|microphone|both)`, `ShowWindow()`, `ShowPanel(settings:hotkeys)`.
+| Command | What it does |
+|---|---|
+| `DoPlaySound(i[, speakers, mic])` | Play sound number *i*, optionally only on speakers or microphone |
+| `DoPlaySoundFromCategory(c, i)` | Play sound *i* of category *c* |
+| `DoPlayRandomSound()` · `DoPlayRandomSoundFromCategory(c)` | Play something random |
+| `DoStopSound()` · `DoTogglePause()` · `DoJumpMs(ms)` · `DoSeekMs(ms)` | Transport |
+| `SetVolume(0-100)` · `DoToggleMute()` · `GetVolume()` | Volume |
+| `DoStartRecordingSpeakers()` · `DoStartRecordingMicrophone()` · `DoStopRecording()` | Recorder |
+| `GetSoundlist()` · `GetCategories()` · `GetPlayStatus()` · `GetPlaybackPositionInMs()` · `IsAlive()` | Status |
+| `DoPlaySoundByName(text)` · `DoTts(text)` · `DoSetPlayMode(speakers\|microphone\|both)` · `ShowWindow()` | Ferrovox extras |
 
-Antworten: Werte direkt, sonst `R-200` (ok), `R-204` (kein Inhalt), `R-404` (unbekannt/nicht gefunden).
+Responses are values, or `R-200` (ok), `R-204` (no content), `R-403` (disabled) and `R-404` (not found).
 
-## Daten
+<br>
 
-- Soundliste, Einstellungen, Log: `%APPDATA%\T-GOW\Ferrovox` (tägliche Backups in `backups\`)
-- Programm: `%LOCALAPPDATA%\Programs\Ferrovox` (Deinstallation über Windows-Einstellungen → Apps)
-- Portabel: Umgebungsvariable `FERROVOX_DATA_DIR` auf einen Ordner setzen
-- Aufnahmen: `Musik\Ferrovox Aufnahmen` bzw. `Music\Ferrovox Recordings` (einstellbar)
+## Under the hood
 
-Ferrovox sendet keine Nutzungsdaten. Netzwerkzugriffe gibt es nur für die Update-Prüfung (GitHub) und
-die VB-CABLE-Einrichtung (vb-audio.com).
+- **UI:** [egui](https://github.com/emilk/egui) / eframe on OpenGL, Segoe UI and Segoe Fluent Icons, a DWM dark title bar.
+- **Audio:** WASAPI through [cpal](https://github.com/RustAudio/cpal), a lock-free real-time mixer per output with linear-interpolation resampling, fades and soft clipping, microphone passthrough through a wait-free ring buffer with drift control.
+- **Decoding:** [Symphonia](https://github.com/pdeljanov/Symphonia) for every format, an LRU cache and gated loudness analysis.
+- **Input:** low-level keyboard and mouse hooks for global hotkeys, `SendInput` with scancodes for Auto-Keys.
+- **Windows integration:** Core Audio for default devices, session ducking and loopback recording, WinRT for text-to-speech, named pipes for remote control.
+- **Distribution:** an Inno Setup installer that picks the right build for the system, and an updater that fetches a signed `latest.json` from GitHub Releases and checks size and SHA-256 before installing.
 
-## Selbst bauen
+<br>
 
-Voraussetzungen: Rust (stable, MSVC, Ziele `x86_64-pc-windows-msvc` und `i686-pc-windows-msvc`),
-Windows-SDK und für das Setup [Inno Setup 6](https://jrsoftware.org/isinfo.php).
+## Build from source
+
+Requirements: Rust (stable, MSVC toolchain), the Windows SDK, and for the installer [Inno Setup 6](https://jrsoftware.org/isinfo.php).
 
 ```bash
 cargo build --release
@@ -120,51 +223,31 @@ cargo build --release
 cargo test --release
 ```
 
-Komplettes Release (beide EXEs, Lizenztexte, Setup, signierte Update-Beschreibung) nach `dist\release\`:
+A complete release (both executables, license file, setup and signed update manifest) goes to `dist\release\`:
 
 ```bash
 powershell -ExecutionPolicy Bypass -File release\build-release.ps1 -Repo T-G0W/ferrovox
 ```
 
-## Neue Version veröffentlichen
+Pushing a tag such as `v1.0.1` builds and publishes the release on GitHub Actions automatically.
 
-1. `version` in `Cargo.toml` erhöhen, `release\notes-de.txt` / `notes-en.txt` anpassen.
-2. Commit, Tag `v<version>` setzen und pushen – GitHub Actions (`.github/workflows/release.yml`) baut
-   die Setup.exe für 32 + 64 Bit, signiert `latest.json` und veröffentlicht das Release.
-3. Alle installierten Ferrovox-Versionen finden das Update automatisch.
+<br>
 
-Einmalig: Das Secret `FERROVOX_SIGNING_KEY` im Repository anlegen (Inhalt von
-`%USERPROFILE%\.ferrovox-release\signing-key.txt`). Den privaten Schlüssel sicher aufbewahren und nie
-veröffentlichen – ohne ihn lassen sich keine Updates mehr signieren. Das Repository (oder ein separates
-Release-Repository) muss öffentlich sein, damit Ferrovox die Updates ohne Anmeldung laden kann.
+## Privacy
 
-## Aufbau
+Ferrovox sends no telemetry. It only goes online to check for updates on GitHub and, when you ask for it, to download VB-CABLE from vb-audio.com.
 
-```
-src/
-  main.rs          Start, Einzelinstanz, -rc, Logging
-  core.rs          Wiedergabelogik, Hotkey-Tabelle, Auto-Keys, Aufnahme, TTS, Undo/Redo
-  audio/           Engine (cpal/WASAPI), Echtzeit-Mixer, Dekoder (Symphonia), Cache, DSP, Ducking, TTS
-  hook.rs          Low-Level-Tastatur-/Maus-Hook für globale Hotkeys
-  autokeys.rs      SendInput (Scancodes) für Push-to-Talk
-  remote.rs        Named-Pipe-Fernsteuerung
-  library.rs       Sounds, Kategorien, Hotbar (JSON)
-  spl.rs           Import/Export von .spl-Soundlisten
-  settings.rs      Einstellungen + Spezial-Hotkeys
-  i18n.rs          Deutsch/Englisch, automatisch nach Windows-Sprache
-  update.rs        Auto-Updater (GitHub Releases, Ed25519-Signatur)
-  vmic.rs          Ein-Klick-Einrichtung des virtuellen Mikrofons
-  ui/              Oberfläche (egui): Liste, Kategorien, Hotbar, Einstellungen, Editor, Werkzeuge
-installer/         Inno-Setup-Skript (32 + 64 Bit)
-release/           Release-Skript und Versionshinweise
-tools/release/     Schlüssel erzeugen, Updates signieren, Lizenztexte sammeln
-```
+<br>
 
-## Bekannte Grenzen
+## License and credits
 
-- Ohne Treiber lässt Windows kein Programm in ein Mikrofon schreiben. Ferrovox installiert dafür VB-CABLE
-  (Donationware von VB-Audio) per Klick. Je nach System verlangt VB-CABLE einen Neustart, bis das Gerät erscheint.
-- Aufnahmen und Editor speichern als WAV (kein MP3/M4A-Encoder).
-- Opus-Audio (häufig in WebM) wird vom Dekoder nicht unterstützt.
+Ferrovox is © 2026 T-GOW and dual-licensed under either of
 
-© 2026 T-GOW
+- [MIT License](LICENSE-MIT)
+- [Apache License, Version 2.0](LICENSE-APACHE)
+
+at your option.
+
+VB-CABLE is donationware by VB-Audio Software and is downloaded from its official website, never bundled. The licenses of all libraries Ferrovox uses are installed alongside the app in `THIRD_PARTY_LICENSES.txt`.
+
+<p align="center"><sub>Made with 🦀 by T-GOW</sub></p>
