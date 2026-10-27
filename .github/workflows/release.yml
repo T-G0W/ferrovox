@@ -29,7 +29,7 @@ jobs:
         run: ./release/build-release.ps1
 
       - name: GitHub-Release veröffentlichen
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: Ferrovox ${{ github.ref_name }}
           body_path: dist/release/RELEASE_NOTES.md
