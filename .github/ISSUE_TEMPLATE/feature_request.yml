@@ -1,0 +1,26 @@
+name: Idea or change
+description: Suggest a new feature or a change to Ferrovox
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping to make Ferrovox better! English or German is fine.
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What should Ferrovox do, or do differently?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it help?
+      description: The situation or problem behind the idea.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or examples
+      description: Workarounds you use today, or how other apps solve it.

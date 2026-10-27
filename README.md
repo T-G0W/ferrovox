@@ -16,6 +16,7 @@
   <img alt="License: MIT OR Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-3a3a3a?style=flat-square">
   <a href="https://github.com/T-G0W/ferrovox/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/T-G0W/ferrovox?style=flat-square&color=e8742a"></a>
   <a href="https://github.com/T-G0W/ferrovox/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/T-G0W/ferrovox/total?style=flat-square&color=4cc36b"></a>
+  <a href="https://github.com/T-G0W/ferrovox/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/T-G0W/ferrovox?style=flat-square&color=8b5cf6"></a>
 </p>
 
 <p align="center">
@@ -43,6 +44,7 @@
   <a href="#remote-control">Remote control</a> ·
   <a href="#under-the-hood">Under the hood</a> ·
   <a href="#build-from-source">Build</a> ·
+  <a href="#bugs-ideas-and-feedback">Feedback</a> ·
   <a href="#license-and-credits">License</a>
 </p>
 
@@ -236,6 +238,24 @@ Pushing a tag such as `v1.0.1` builds and publishes the release on GitHub Action
 ## Privacy
 
 Ferrovox sends no telemetry. It only goes online to check for updates on GitHub and, when you ask for it, to download VB-CABLE from vb-audio.com.
+
+<br>
+
+## Bugs, ideas and feedback
+
+Ferrovox gets better with your feedback. Please use **[GitHub Issues](https://github.com/T-G0W/ferrovox/issues)** for everything you would like to see fixed, added or changed.
+
+<p align="center">
+  <a href="https://github.com/T-G0W/ferrovox/issues/new?template=bug_report.yml"><img alt="Report a bug" src="https://img.shields.io/badge/Report%20a%20bug-E5484D?style=for-the-badge&logo=github&logoColor=white" height="36"></a>
+  &nbsp;
+  <a href="https://github.com/T-G0W/ferrovox/issues/new?template=feature_request.yml"><img alt="Suggest an idea" src="https://img.shields.io/badge/Suggest%20an%20idea-4CC36B?style=for-the-badge&logo=github&logoColor=white" height="36"></a>
+</p>
+
+- **Bugs:** what happened, what you expected, and your Ferrovox and Windows version. The log (**Help › Show log**) helps a lot.
+- **Ideas and changes:** new features, things that feel awkward, missing hotkeys, formats or integrations.
+- Take a quick look at the [open issues](https://github.com/T-G0W/ferrovox/issues) first. If someone already asked for the same thing, a 👍 reaction is enough and helps to prioritise.
+
+Issues are welcome in English or German.
 
 <br>
 
