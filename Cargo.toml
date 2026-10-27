@@ -1,6 +1,6 @@
 [package]
 name = "ferrovox"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 authors = ["T-GOW"]
 description = "Ferrovox – a soundboard that plays into your microphone, by T-GOW"
