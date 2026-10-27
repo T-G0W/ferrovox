@@ -1,0 +1,53 @@
+name: Bug report
+description: Something in Ferrovox does not work as expected
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! English or German is fine.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem as clearly as you can.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. ...
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+  - type: input
+    id: version
+    attributes:
+      label: Ferrovox version
+      description: Shown under Help › About Ferrovox.
+      placeholder: "1.0.2"
+    validations:
+      required: true
+  - type: dropdown
+    id: windows
+    attributes:
+      label: Windows version
+      options:
+        - Windows 11 (64-bit)
+        - Windows 10 (64-bit)
+        - Windows 10 (32-bit)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: Help › Show log opens ferrovox.log. Paste the lines around the problem, and check them first, as they can contain file paths and device names.
+      render: text
