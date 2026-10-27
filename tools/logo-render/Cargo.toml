@@ -1,0 +1,10 @@
+[package]
+name = "logo-render"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+resvg = "0.45"

@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rust-Ziele (64 + 32 Bit)
+        run: rustup target add x86_64-pc-windows-msvc i686-pc-windows-msvc
+
+      - name: Inno Setup
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe")) { choco install innosetup -y --no-progress }
+
+      - name: Bauen, Setup erstellen, signieren
+        shell: pwsh
+        env:
+          FERROVOX_SIGNING_KEY: ${{ secrets.FERROVOX_SIGNING_KEY }}
+          FERROVOX_UPDATE_REPO: ${{ github.repository }}
+        run: ./release/build-release.ps1
+
+      - name: GitHub-Release veröffentlichen
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Ferrovox ${{ github.ref_name }}
+          body_path: dist/release/RELEASE_NOTES.md
+          make_latest: true
+          files: |
+            dist/release/Ferrovox-Setup-*.exe
+            dist/release/latest.json
+            dist/release/latest.json.sig

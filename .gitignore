@@ -1,0 +1,6 @@
+/target
+/tools/*/target
+/dist
+/private
+*.key
+signing-key*.txt

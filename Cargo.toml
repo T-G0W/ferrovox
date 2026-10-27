@@ -1,0 +1,88 @@
+[package]
+name = "ferrovox"
+version = "1.0.0"
+edition = "2021"
+authors = ["T-GOW"]
+description = "Ferrovox – Soundboard mit Mikrofon-Einspeisung, von T-GOW"
+license = "Proprietary"
+publish = false
+build = "build.rs"
+
+[[bin]]
+name = "ferrovox"
+path = "src/main.rs"
+
+[dependencies]
+eframe = { version = "0.29", default-features = false, features = ["default_fonts", "glow"] }
+egui_extras = { version = "0.29", default-features = false }
+cpal = "0.15"
+symphonia = { version = "0.5", features = ["all"] }
+hound = "3.5"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+roxmltree = "0.20"
+crossbeam-channel = "0.5"
+parking_lot = "0.12"
+rtrb = "0.3"
+rfd = "0.15"
+tray-icon = "0.19"
+image = { version = "0.25", default-features = false, features = ["png"] }
+raw-window-handle = "0.6"
+rand = "0.8"
+dirs = "5"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+log = "0.4"
+anyhow = "1"
+windows-core = "0.58"
+ed25519-compact = { version = "2", default-features = false }
+sha2 = "0.10"
+
+[dependencies.windows]
+version = "0.58"
+features = [
+    "Foundation",
+    "Foundation_Collections",
+    "Win32_Devices_FunctionDiscovery",
+    "Win32_UI_Shell_PropertiesSystem",
+    "Media_SpeechSynthesis",
+    "Storage_Streams",
+    "Win32_Foundation",
+    "Win32_Globalization",
+    "Win32_Security",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Com",
+    "Win32_System_Com_StructuredStorage",
+    "Win32_System_Console",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_IO",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Pipes",
+    "Win32_System_Registry",
+    "Win32_System_Threading",
+    "Win32_System_Variant",
+    "Win32_Graphics_Gdi",
+    "Win32_Graphics_Dwm",
+    "Win32_Media_Audio",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+]
+
+[dev-dependencies]
+ab_glyph = "0.2"
+
+[build-dependencies]
+winresource = "0.1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
