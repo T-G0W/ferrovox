@@ -78,11 +78,11 @@ $public = [regex]::Match((Get-Content src\update.rs -Raw), 'PUBLIC_KEY_HEX: &str
 & $tool verify --dir $out --public $public
 if ($LASTEXITCODE -ne 0) { throw "Signatur passt nicht zum öffentlichen Schlüssel in src\update.rs" }
 
-$body = "## Ferrovox $version`n"
-foreach ($lang in @("de", "en")) {
+$parts = foreach ($lang in @("de", "en")) {
     $f = "release\notes-$lang.txt"
-    if (Test-Path $f) { $body += "`n" + (Get-Content $f -Raw -Encoding UTF8).Trim() + "`n" }
+    if (Test-Path $f) { (Get-Content $f -Raw -Encoding UTF8).Trim() }
 }
+$body = "## Ferrovox $version`n`n" + (@($parts | Where-Object { $_ }) -join "`n`n---`n`n") + "`n"
 [IO.File]::WriteAllText((Join-Path $out "RELEASE_NOTES.md"), $body, (New-Object Text.UTF8Encoding $false))
 
 Write-Host "== Fertig: $out" -ForegroundColor Green

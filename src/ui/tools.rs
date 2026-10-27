@@ -734,6 +734,14 @@ fn about_window(app: &mut FerrovoxApp, ctx: &egui::Context) {
             ));
             ui.add_space(6.0);
             ui.label(RichText::new(t!("Ferrovox = „ferrum“ (Eisen/Rust) + „vox“ (Stimme)", "Ferrovox = \"ferrum\" (iron/rust) + \"vox\" (voice)")).small().italics());
+            ui.add_space(6.0);
+            let github = ui
+                .add(egui::Label::new(kit::value("github.com/T-G0W")).sense(egui::Sense::click()))
+                .on_hover_cursor(egui::CursorIcon::PointingHand)
+                .on_hover_text(t!("GitHub-Profil öffnen", "Open GitHub profile"));
+            if github.clicked() {
+                crate::winutil::open_url(crate::paths::GITHUB_PROFILE);
+            }
             ui.add_space(8.0);
             if ui.button(t!("Nach Updates suchen", "Check for updates")).clicked() {
                 crate::update::updater().check(app.core.clone(), true);

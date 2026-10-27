@@ -3,6 +3,7 @@ use std::path::PathBuf;
 pub const APP_NAME: &str = "Ferrovox";
 pub const VENDOR: &str = "T-GOW";
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+pub const GITHUB_PROFILE: &str = "https://github.com/T-G0W";
 
 pub fn data_dir() -> PathBuf {
     let dir = match std::env::var_os("FERROVOX_DATA_DIR") {
