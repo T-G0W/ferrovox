@@ -193,7 +193,7 @@ pub struct Snapshot {
 impl Library {
     pub fn load(path: &Path) -> Library {
         match std::fs::read_to_string(path) {
-            Ok(txt) => match serde_json::from_str::<Library>(&txt) {
+            Ok(txt) => match serde_json::from_str::<Library>(txt.trim_start_matches('\u{feff}')) {
                 Ok(mut lib) => {
                     lib.fix_ids();
                     lib

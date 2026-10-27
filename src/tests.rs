@@ -252,3 +252,16 @@ fn language_quotes() {
     crate::i18n::set_language(crate::i18n::Language::De);
     assert_eq!(crate::i18n::q("Airhorn"), "„Airhorn“");
 }
+
+#[test]
+fn library_with_bom_still_loads() {
+    let dir = std::env::temp_dir().join(format!("ferrovox-bom-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    let path = dir.join("library.json");
+    let mut lib = Library::default();
+    lib.add_sound(Sound { path: "C:/x/a.mp3".into(), title: "A".into(), ..Default::default() }, None, false);
+    let json = serde_json::to_string(&lib).unwrap();
+    std::fs::write(&path, format!("\u{feff}{json}")).unwrap();
+    assert_eq!(Library::load(&path).sounds.len(), 1);
+    let _ = std::fs::remove_dir_all(dir);
+}
